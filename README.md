@@ -166,7 +166,7 @@ Now let’s check the debezium CDC events on a specific table :
 
 We see a list of dictionaries containing all the operations performed on a specific table. The most important attribute to check is “op”. It’s a mandatory string that describes the type of operation. In an update event value, the op field value is u, signifying that this row changed because of an update, c for create, t for truncate and d for delete. 
 
-<img width="580" height="1522" alt="image" src="https://github.com/user-attachments/assets/05f74c0b-0ec8-44db-983b-615705ceb2ec" />
+<img width="480" height="522" alt="image" src="https://github.com/user-attachments/assets/05f74c0b-0ec8-44db-983b-615705ceb2ec" />
 
 For more information on Debezium events, see this Debezium documentation. 
 
