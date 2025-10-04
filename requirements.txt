@@ -1,7 +1,0 @@
-minio
-pandas
-pyarrow
-psycopg2
-requests
-
-
