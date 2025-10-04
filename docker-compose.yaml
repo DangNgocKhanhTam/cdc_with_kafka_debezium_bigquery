@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  minio:
+    image: minio/minio
+    container_name: datalake-minio
+    hostname: minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_storage:/data
+    environment:
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+    command: server --console-address ":9001" /data
+
+  postgresql:
+    image: postgres:latest
+    command: ["postgres", "-c", "wal_level=logical"]
+    container_name: dw-postgresql
+    healthcheck:
+      test: ["CMD", "psql", "-U", "k6", "-c", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - dw_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  minio_storage:
+  dw_postgres_data:
