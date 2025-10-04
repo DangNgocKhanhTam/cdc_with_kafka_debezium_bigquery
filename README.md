@@ -83,7 +83,6 @@ services:
     environment:
      - KAFKA_CONNECT_URIS=http://connect:8083</pre>
 
-Let’s explain the different components:
 
 + We first create a zookeeper service with basic configuration. In this, I kept ALLOW_ANONYMOUS_LOGIN environment variable as yes to connect with unauthorized users. Click on zookeeper configuration for more details.
 + Then we have to create a Kafka service. ZOOKEEPER_CONNECT is used to access zookeeper service from Kafka. As we are using docker-compose you can give service name and expose the port of zookeeper container directly. E.g zookeeper:2181
